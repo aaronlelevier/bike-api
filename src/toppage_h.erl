@@ -32,8 +32,18 @@ hello_to_html(Req, State) ->
 	{Body, Req, State}.
 
 hello_to_json(Req, State) ->
-	Body = <<"{\"rest\": \"Hello World!\"}">>,
-	{Body, Req, State}.
+	% Body = <<"{\"rest\": \"Hello World!\"}">>,
+	% {Body, Req, State}.
+	L = [{brand,<<"FOX">>},
+		{discount,undefined},
+		{image_url,<<"http://www.commencalusa.com/Files/106799/Img/12/T19MTMLFOXFLDEOO_675.jpg">>},
+		{name,<<"FOX FLEXAIR DELTA LONG SLEEVE JERSEY OPEN ORANGE 2019">>},
+		{price,<<"$ 99.90">>},
+		{sale_price,undefined},
+		{sizes,[<<"S">>,<<"M">>,<<"L">>,<<"XL">>]},
+		{type,item}],
+	Body = ezwebframe_mochijson2:encode(L),
+    {Body, Req, State}.
 
 hello_to_text(Req, State) ->
 	{<<"REST Hello World as text!">>, Req, State}.
